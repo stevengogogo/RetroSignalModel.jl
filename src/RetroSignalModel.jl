@@ -1,5 +1,9 @@
 module RetroSignalModel
 
-# Write your package code here.
+using Catalyst
+using Parameters
+
+include("models.jl")
+
 
 end

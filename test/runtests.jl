@@ -2,5 +2,7 @@ using RetroSignalModel
 using Test
 
 @testset "RetroSignalModel.jl" begin
-    # Write your tests here.
+    @testset "Chemical Reaction Functions" begin
+        include("chemical_reactions.jl")
+    end
 end
