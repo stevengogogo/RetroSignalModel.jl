@@ -17,5 +17,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/stevengogogo/RetroSignalModel.jl",
+    branch = "gh-pages",
+    repo="github.com/stevengogogo/RetroSignalModel.jl.git",
 )
