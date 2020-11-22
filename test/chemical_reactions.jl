@@ -14,7 +14,7 @@ See Also
 
 @testset "Michaelis Menten" begin 
 
-mm_func = RetroSignalModel.MM 
+
 
 chem, k, kd = 2.0, 3.0, 2.0
 
