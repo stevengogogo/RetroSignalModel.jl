@@ -11,7 +11,12 @@ using Test
         include("parameter_compat.jl")
     end 
 
-    @testset "Latex completeness of rtgM4" begin
-        include("latex.jl") 
+    @testset "Data" begin
+        include("data.jl")
     end
+
+    @testset "Protein lookup" begin 
+        include("protein_lookup.jl")
+    end
+
 end

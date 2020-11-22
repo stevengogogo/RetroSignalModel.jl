@@ -12,5 +12,6 @@ include("utils.jl")
 include("model.jl")
 include("param.jl")
 include("solve.jl")
+include("alias.jl")
 
 end

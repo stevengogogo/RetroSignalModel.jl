@@ -15,9 +15,6 @@ num_par  = length(model.ps)
 # Number of proteins 
 num_species = length(model.states)
 
-# Valid Parameter
-
-
 
 # Test 
 
@@ -28,10 +25,19 @@ num_species = length(model.states)
 ## Test compatibility between names of given parameter set and model
 @testset "Protein names" for (model_n,n) in zip(names_u, names_u_valid )
     n = string(n, "(t)") # arguements
-    @test n == model_n
+    @test n == model_n;
 end
 
 @testset "Parmeter names" for (model_n,n) in zip(names_p, names_p_valid)
     n = string(n)
-    @test n == model_n
+    @test n == model_n;
+end
+
+
+@testset "Aavailibity of Latex Alias" begin 
+    num_latex = length(keys(RetroSignalModel.rtgM4.LatexAliasing))
+
+    num_param = sum(length.([names_u, names_p]))
+
+    @test num_latex == num_param
 end
