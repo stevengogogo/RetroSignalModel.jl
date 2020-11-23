@@ -1,6 +1,4 @@
-"""
-
-"""
+export dudt 
 
 """
 Parameter setting for model
@@ -29,18 +27,19 @@ struct model_meta
 end
 
 
-
-function get_model_meta(model)
+"""
+    model_meta(model)
+Get model meta. Including the origianl model input, conditional data from csv, and protein lookup table
+"""
+function model_meta(model)
     cond = get_Exptable()
     protein_lookup = get_protein_lookup(model)
-
-    meta = model_meta(model, cond, protein_lookup)
-    return meta
+    return model_meta(model, cond, protein_lookup)
 end
 
-"
+"""
 Protein lookup table: reported the indexes of specify protein and location
-"
+"""
 function get_protein_lookup(model)
 
     spec_names = string.(Catalyst.species(model))
@@ -64,12 +63,14 @@ function get_protein_lookup(model)
 end
 
 
-
+"""
+Get Boolean model
+"""
 function get_Exptable()
     return Data.RTG_Response_Boolean
 end
 
-"
+"""
 Get Dictionary of index. Both agents (u) and parameters(p)
 Example:
 julia> index_dict = get_index_dictionary(MODEL);
@@ -78,7 +79,7 @@ julia> index_dict.u.s
 1
 julia> index_dict.p.n_s
 1
-"
+"""
 function get_index_dictionary(model)
 
     u_dict = @LArray collect(1 : length(species(model)) : length(species(model))) Tuple(species(model))
@@ -101,6 +102,20 @@ function cal_dudt(model, u, p, init_t =0.0)
     return dU
 end
 
+"""
+    dudt(model, u, p; t=nothing)
+Get the derivative in given u and p from Catalyst model. 
+"""
+function dudt(model, u, p; t=nothing)
+    ode_func! = ODEFunction(convert(ODESystem, model))
+    u_ = deepcopy(u)
+    ode_func!(u_, u, p, t)
+    return u_
+end
 
+
+function dudt(u, de::T; t=nothing) where T <:FindSteadyStates.DEmeta
+    return dudt(de.func, u, de.p; t=t)
+end
 
 

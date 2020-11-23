@@ -1,5 +1,8 @@
 using RetroSignalModel
 using Catalyst
+using DifferentialEquations
+using FindSteadyStates
+using ModelingToolkit
 using Test
 
 @testset "RetroSignalModel.jl" begin
@@ -19,4 +22,15 @@ using Test
         include("protein_lookup.jl")
     end
 
+    @testset "Model meta" begin 
+        include("model_utils.jl")
+    end
+
+    @testset "Compatibility with FindSteadyStates.jl" begin 
+        include("catalyst_FindSteadyStates.jl")
+    end
+
+    @testset  "Get flux" begin 
+        include("get_flux.jl")
+    end
 end
