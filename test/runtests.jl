@@ -33,4 +33,8 @@ using Test
     @testset  "Get flux" begin 
         include("get_flux.jl")
     end
+
+    @testset "Validation function" begin
+        include("validation_func.jl")
+    end
 end

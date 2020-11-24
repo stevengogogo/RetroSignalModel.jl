@@ -1,4 +1,4 @@
-export valid_setting, get_output, try_simulate, try_conditions, get_del_u
+export valid_setting, get_output, try_simulate, try_conditions, get_del_u, try_conditions!
 
 ## SETTING
 
@@ -11,7 +11,6 @@ Setting for validation.
     S_SPAN # Domain (low, high)
     DEL_CONC # Concentration of deletion
     TRANS_THRESHOLD 
-    tspan 
     SSMETHOD 
     meta
     cond 
@@ -30,7 +29,6 @@ function valid_setting(model;Setting=setting())
     S_SPAN = Setting.S_SPAN,
     DEL_CONC= Setting.DEL_CONC,
     TRANS_THRESHOLD = Setting.TRANS_THRESHOLD,
-    tspan = Setting.val_tspan,
     SSMETHOD = Setting.SSMETHOD,
     meta = meta,
     cond = meta.cond, 
@@ -39,51 +37,47 @@ function valid_setting(model;Setting=setting())
 end
 
 
+
+
 """
 Try conditions of the model with given initial variables and parameters.
 """
-function try_conditions!(u,p;
+function try_conditions(u,p, VALID_SETTING;
                         BREAK=false,
-                        Cond_Random=true,
-                        setting=valid_setting())
+                        Cond_Random=true)
 
-        @unpack  model, S_SPAN, DEL_CONC, TRANS_THRESHOLD, tspan, SSMETHOD, cond, protein_lookup = setting
+        @unpack  model, S_SPAN, DEL_CONC, TRANS_THRESHOLD,  SSMETHOD, cond, protein_lookup = VALID_SETTING
 
         valid = 1
-        steady = 1
 
-        num_cond = size(cond)[1]
+        num_cond = size(cond)[1] # number of conditions
 
-        if Cond_Random # Shuffling the conditions
-            trial_cond_order = shuffle( Int.(range(1,stop=num_cond,length=num_cond ) ) )
-        else
-            trial_cond_order = Int.(range(1,stop=num_cond,length=num_cond) )
-        end
+        # Shuffling the conditions
+        trial_cond_order = Cond_Random ? shuffle(1:num_cond) : 1:num_cond
 
         test_log = Vector{Union{Missing, Int16}}(missing, num_cond)
 
         # get initial condition
-        de = DEsteady(func=model, u0=u, p=p, method=setting.SSMETHOD)
-        u[:] = solve(de) # This step changed the initial value, and reset as the steady ones
+        de = DEsteady(func=model, u0=u, p=p, method=SSMETHOD)
+        u_ = solve(de) # This step changed the initial value, and reset as the steady ones
 
         for trial_n in trial_cond_order # Test conditions
+
             con = cond[trial_n,:]
 
-            if typeof(con.Trans2Nuc) == Missing
-                continue # some conditions are not measured
-            end
-
-            ud = get_del_u(u, con.rtg1, con.rtg2, con.rtg3, con.mks, con.s, protein_lookup; del_conc=DEL_CONC, s_span=S_SPAN)
-
+            typeof(con.Trans2Nuc) == Missing ? continue : nothing # some conditions are not measured
             
-            sol = Sim.solve_SSODE(model, ud, p; method=SSMETHOD)
+
+            ud = get_del_u(u_, con.rtg1, con.rtg2, con.rtg3, con.mks, con.s, protein_lookup; del_conc=DEL_CONC, s_span=S_SPAN)
+
+            sol = solve(de(ud))
 
             # Check the steady-state is real
             if sol.retcode==:Failure
-                steady = 0
                 valid = 0 #unstable system
                 break
             end
+
 
             trans2nuc = get_output(sol, con.gfp, protein_lookup, threshold=TRANS_THRESHOLD) # 1 means nucleus has significantly higer concentration than cytosol
 
@@ -91,22 +85,21 @@ function try_conditions!(u,p;
             if trans2nuc != con.Trans2Nuc
                 valid = 0
                 test_log[trial_n] = 0
-                if BREAK # Early termination when invalid condition is confirmed
-                    break
-                end
+    
+                # Early termination when invalid condition is confirmed
+                BREAK ? break : nothing
             else
                 test_log[trial_n] = 1
             end
         end
 
-        if valid == 1 # Simulation test
-            if try_simulate(model,p,u) == 0
-                valid = 0
-            end
-        end
-
-        return valid, test_log, steady
+      
+        return valid, test_log
 end
+
+
+
+
 
 """
 Compare the cytosolic concentration of either 'rtg1' or 'rtg3' with their nucleus concentrations.
@@ -175,9 +168,13 @@ function get_del_u(u, rtg1, rtg2, rtg3, mks, s, protein_lookup; del_conc=DEL_CON
 end
 
 
-"Qualitative Validation"
 
-"""Substraction of nuclear concentration with cytoplasmic concentration"""
+"""
+Qualitative Validation
+
+method
+------
+Substraction of nuclear concentration with cytoplasmic concentration"""
 function get_outputQ(sol, gfp, protein_lookup; threshold = TRANS_THRESHOLD)
 
     if gfp == "rtg1"
