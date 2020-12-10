@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+\usepackage[version=3]{mhchem}
+\usepackage{amsmath}
+\begin{document}
+\begin{align}
+
+
+\ce{ s &->[1] s}\\
+\ce{ Rtg2_{ina\_c} &<=>[\frac{ksV \left( s\left( t \right) \right)^{n_{s}}}{ksD^{n_{s}} + \left( s\left( t \right) \right)^{n_{s}}}][k2I] Rtg2_{act\_c}}\\
+\ce{ Rtg2_{act\_c} + Mks &<=>[k2M][kn2M] Rtg2Mks_{c}}\\
+\ce{ Bmh + Mks &<=>[kBM][knBM] BmhMks}\\
+\ce{ Rtg13_{a\_c} &->[k13I + \frac{k13IV \mathrm{BmhMks}\left( t \right)}{k13ID + \mathrm{BmhMks}\left( t \right)}] Rtg13_{i\_c}}\\
+\ce{ Rtg3_{i\_c} &<=>[k3A_{c}][k3I_{c}] Rtg3_{a\_c}}\\
+\ce{ Rtg3_{a\_n} &->[k3I_{n}] Rtg3_{i\_n}}\\
+\ce{ Rtg1_{c} + Rtg3_{a\_c} &<=>[k13_{c}][kn13_{c}] Rtg13_{a\_c}}\\
+\ce{ Rtg1_{c} + Rtg3_{i\_c} &<=>[k13_{c}][kn13_{c}] Rtg13_{i\_c}}\\
+\ce{ Rtg1_{n} + Rtg3_{a\_n} &<=>[k13_{n}][kn13_{n}] Rtg13_{a\_n}}\\
+\ce{ Rtg1_{n} + Rtg3_{i\_n} &<=>[k13_{n}][kn13_{n}] Rtg13_{i\_n}}\\
+\ce{ Rtg1_{c} &<=>[k1in][k1out] Rtg1_{n}}\\
+\ce{ Rtg3_{a\_c} &<=>[k3inA][k3outA] Rtg3_{a\_n}}\\
+\ce{ Rtg3_{i\_c} &<=>[k3inI][k3outI] Rtg3_{i\_n}}
+\end{align}
+
+\begin{aligned}
+\frac{ds(t)}{dt} =& 0 \\
+\frac{dRtg2_{ina\_c(t)}}{dt} =&  - \frac{ksV \left( s\left( t \right) \right)^{n_{s}}}{ksD^{n_{s}} + \left( s\left( t \right) \right)^{n_{s}}} \mathrm{Rtg2\_ina\_c}\left( t \right) + k2I \mathrm{Rtg2\_act\_c}\left( t \right) \\
+\frac{dRtg2_{act\_c(t)}}{dt} =& \frac{ksV \left( s\left( t \right) \right)^{n_{s}}}{ksD^{n_{s}} + \left( s\left( t \right) \right)^{n_{s}}} \mathrm{Rtg2\_ina\_c}\left( t \right) - k2I \mathrm{Rtg2\_act\_c}\left( t \right) - k2M \mathrm{Rtg2\_act\_c}\left( t \right) \mathrm{Mks}\left( t \right) + kn2M \mathrm{Rtg2Mks\_c}\left( t \right) \\
+\frac{dMks(t)}{dt} =&  - k2M \mathrm{Rtg2\_act\_c}\left( t \right) \mathrm{Mks}\left( t \right) + kn2M \mathrm{Rtg2Mks\_c}\left( t \right) - kBM \mathrm{Bmh}\left( t \right) \mathrm{Mks}\left( t \right) + knBM \mathrm{BmhMks}\left( t \right) \\
+\frac{dRtg2Mks_{c(t)}}{dt} =& k2M \mathrm{Rtg2\_act\_c}\left( t \right) \mathrm{Mks}\left( t \right) - kn2M \mathrm{Rtg2Mks\_c}\left( t \right) \\
+\frac{dBmh(t)}{dt} =&  - kBM \mathrm{Bmh}\left( t \right) \mathrm{Mks}\left( t \right) + knBM \mathrm{BmhMks}\left( t \right) \\
+\frac{dBmhMks(t)}{dt} =& kBM \mathrm{Bmh}\left( t \right) \mathrm{Mks}\left( t \right) - knBM \mathrm{BmhMks}\left( t \right) \\
+\frac{dRtg13_{a\_c(t)}}{dt} =&  - \left( k13I + \frac{k13IV \mathrm{BmhMks}\left( t \right)}{k13ID + \mathrm{BmhMks}\left( t \right)} \right) \mathrm{Rtg13\_a\_c}\left( t \right) + k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_a\_c}\left( t \right) - kn13_{c} \mathrm{Rtg13\_a\_c}\left( t \right) \\
+\frac{dRtg13_{i\_c(t)}}{dt} =& \left( k13I + \frac{k13IV \mathrm{BmhMks}\left( t \right)}{k13ID + \mathrm{BmhMks}\left( t \right)} \right) \mathrm{Rtg13\_a\_c}\left( t \right) + k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_i\_c}\left( t \right) - kn13_{c} \mathrm{Rtg13\_i\_c}\left( t \right) \\
+\frac{dRtg3_{i\_c(t)}}{dt} =&  - k3A_{c} \mathrm{Rtg3\_i\_c}\left( t \right) + k3I_{c} \mathrm{Rtg3\_a\_c}\left( t \right) - k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_i\_c}\left( t \right) + kn13_{c} \mathrm{Rtg13\_i\_c}\left( t \right) - k3inI \mathrm{Rtg3\_i\_c}\left( t \right) + k3outI \mathrm{Rtg3\_i\_n}\left( t \right) \\
+\frac{dRtg3_{a\_c(t)}}{dt} =& k3A_{c} \mathrm{Rtg3\_i\_c}\left( t \right) - k3I_{c} \mathrm{Rtg3\_a\_c}\left( t \right) - k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_a\_c}\left( t \right) + kn13_{c} \mathrm{Rtg13\_a\_c}\left( t \right) - k3inA \mathrm{Rtg3\_a\_c}\left( t \right) + k3outA \mathrm{Rtg3\_a\_n}\left( t \right) \\
+\frac{dRtg3_{a\_n(t)}}{dt} =&  - k3I_{n} \mathrm{Rtg3\_a\_n}\left( t \right) - k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_a\_n}\left( t \right) + kn13_{n} \mathrm{Rtg13\_a\_n}\left( t \right) + k3inA \mathrm{Rtg3\_a\_c}\left( t \right) - k3outA \mathrm{Rtg3\_a\_n}\left( t \right) \\
+\frac{dRtg3_{i\_n(t)}}{dt} =& k3I_{n} \mathrm{Rtg3\_a\_n}\left( t \right) - k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_i\_n}\left( t \right) + kn13_{n} \mathrm{Rtg13\_i\_n}\left( t \right) + k3inI \mathrm{Rtg3\_i\_c}\left( t \right) - k3outI \mathrm{Rtg3\_i\_n}\left( t \right) \\
+\frac{dRtg1_{c(t)}}{dt} =&  - k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_a\_c}\left( t \right) + kn13_{c} \mathrm{Rtg13\_a\_c}\left( t \right) - k13_{c} \mathrm{Rtg1\_c}\left( t \right) \mathrm{Rtg3\_i\_c}\left( t \right) + kn13_{c} \mathrm{Rtg13\_i\_c}\left( t \right) - k1in \mathrm{Rtg1\_c}\left( t \right) + k1out \mathrm{Rtg1\_n}\left( t \right) \\
+\frac{dRtg1_{n(t)}}{dt} =&  - k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_a\_n}\left( t \right) + kn13_{n} \mathrm{Rtg13\_a\_n}\left( t \right) - k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_i\_n}\left( t \right) + kn13_{n} \mathrm{Rtg13\_i\_n}\left( t \right) + k1in \mathrm{Rtg1\_c}\left( t \right) - k1out \mathrm{Rtg1\_n}\left( t \right) \\
+\frac{dRtg13_{a\_n(t)}}{dt} =& k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_a\_n}\left( t \right) - kn13_{n} \mathrm{Rtg13\_a\_n}\left( t \right) \\
+\frac{dRtg13_{i\_n(t)}}{dt} =& k13_{n} \mathrm{Rtg1\_n}\left( t \right) \mathrm{Rtg3\_i\_n}\left( t \right) - kn13_{n} \mathrm{Rtg13\_i\_n}\left( t \right)
+\end{aligned}
+
+\end{document}

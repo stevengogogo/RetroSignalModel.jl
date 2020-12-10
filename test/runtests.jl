@@ -3,7 +3,10 @@ using Catalyst
 using DifferentialEquations
 using FindSteadyStates
 using ModelingToolkit
+using Latexify
 using Test
+
+include("utils.jl")
 
 @testset "RetroSignalModel.jl" begin
     @testset "Chemical Reaction Functions" begin
@@ -36,5 +39,13 @@ using Test
 
     @testset "Validation function" begin
         include("validation_func.jl")
+    end
+
+    @testset "Model Visualization" begin
+        include("graphviz.jl")
+    end
+
+    @testset "Latex equations" begin
+        include("latex.jl")
     end
 end
