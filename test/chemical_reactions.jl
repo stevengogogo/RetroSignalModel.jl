@@ -1,10 +1,7 @@
 """
 For testing the Michaelis-Menten and Hill function in  'models/utils.jl'. 
 
-Limitation
-----------
-1. `@reaction_func` is not documentable
-2. `@reaction_func` can not return or be seen in the `Main`.
+
 
 See Also
 --------
