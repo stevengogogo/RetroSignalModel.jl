@@ -57,7 +57,10 @@ function get_protein_lookup(model)
         :Rtg1_n => [ind for (ind,i) in enumerate(spec_names) if occursin("1", string(i)) && occursin("_n", string(i))],
         :Rtg1_c => [ind for (ind,i) in enumerate(spec_names) if occursin("1", string(i)) && occursin("_c", string(i))],
         :Rtg3_n => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("_n", string(i))],
-        :Rtg3_c => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("_c", string(i))]
+        :Rtg3_c => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("_c", string(i))],
+        :Rtg13_c => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("1", string(i)) && occursin("_c", string(i))],
+        :Rtg13_n => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("1", string(i)) && occursin("_n", string(i))],
+        :Rtg13 => [ind for (ind,i) in enumerate(spec_names) if occursin("3", string(i)) && occursin("1", string(i))]
     )
     return protein_lookup
 end
