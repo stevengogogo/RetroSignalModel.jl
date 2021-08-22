@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.5'
+          - '1.6'
         os:
-          - [self-hosted, TWCC]
+          - [ubuntu-latest]
         arch:
           - x64
     steps:
