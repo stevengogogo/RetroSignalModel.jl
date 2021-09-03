@@ -41,9 +41,9 @@ include("utils.jl")
         include("validation_func.jl")
     end
 
-    @testset "Model Visualization" begin
-        include("graphviz.jl")
-    end
+    #@testset "Model Visualization" begin
+        #include("graphviz.jl")
+    #end
 
     @testset "Latex equations" begin
         include("latex.jl")
