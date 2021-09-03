@@ -1,5 +1,5 @@
 using RetroSignalModel
-using RetroSignalModel.rtgM4
+using RetroSignalModel: rtgM4
 using Documenter
 
 makedocs(;
