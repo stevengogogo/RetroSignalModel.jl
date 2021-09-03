@@ -8,6 +8,4 @@
 
 ## Retrograde Signaling Model
 
-![rtgM4 model](test/fig/rtgM4.svg)
-
-
+![rtgM4 model](docs/img/RTG_scheme.png)

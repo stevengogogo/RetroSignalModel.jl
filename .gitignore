@@ -7,7 +7,6 @@
 .ipynb_checkpoints/
 # For Mac
 *.DS_Store
-Manifest.toml
 *.aux
 *.fdb_latexmk
 *.fls
