@@ -764,6 +764,14 @@ git-tree-sha1 = "256eeeec186fa7f26f2801732774ccf277f05db9"
 uuid = "ae5879a3-cd67-5da8-be7f-38c6eb64a37b"
 version = "1.1.1"
 
+[[RetroSignalModel]]
+deps = ["CSV", "Calculus", "Catalyst", "DataFrames", "DifferentialEquations", "FindSteadyStates", "LabelledArrays", "Latexify", "ModelingToolkit", "Parameters", "Random"]
+git-tree-sha1 = "fdf422207679d22946f8f8644ca888e0d0e2f74f"
+repo-rev = "master"
+repo-url = "https://github.com/stevengogogo/RetroSignalModel.jl"
+uuid = "413adb04-e75d-4cfe-b7ca-413dd9cc07d4"
+version = "0.1.0"
+
 [[Revise]]
 deps = ["CodeTracking", "Distributed", "FileWatching", "JuliaInterpreter", "LibGit2", "LoweredCodeUtils", "OrderedCollections", "Pkg", "REPL", "Requires", "UUIDs", "Unicode"]
 git-tree-sha1 = "1947d2d75463bd86d87eaba7265b0721598dd803"
