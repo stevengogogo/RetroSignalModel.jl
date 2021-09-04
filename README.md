@@ -33,6 +33,6 @@ https://stevengogogo.github.io/RetroSignalModel.jl/dev/
 
 ## References
 
-1. Liu, Zhengchang, Takayuki Sekito, Charles B. Epstein, and Ronald A. Butow. “RTG-Dependent Mitochondria to Nucleus Signaling Is Negatively Regulated by the Seven WD-Repeat Protein Lst8p.” EMBO Journal 20, no. 24 (2002): 7209–19. https://doi.org/10.1093/emboj/20.24.7209.
+1. Sekito, Takayuki, Janet Thornton, and Ronald A. Butow. "Mitochondria-to-nuclear signaling is regulated by the subcellular localization of the transcription factors Rtg1p and Rtg3p." Molecular biology of the cell 11.6 (2000): 2103-2115.
 2. Sekito, Takayuki, Zhengchang Liu, Janet Thornton, and Ronald A. Butow. “RTG-Dependent Mitochondria-to-Nucleus Signaling Is Regulated by MKS1 and Is Linked to Formation of Yeast Prion [URE3].” Molecular Biology of the Cell 13, no. 3 (March 2002): 795–804. https://doi.org/10.1091/mbc.01-09-0473.
 3. Rackauckas, Christopher, and Qing Nie. “DifferentialEquations.Jl – A Performant and Feature-Rich Ecosystem for Solving Differential Equations in Julia.” Journal of Open Research Software 5, no. 1 (May 25, 2017): 15. https://doi.org/10.5334/jors.151.
