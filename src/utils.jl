@@ -5,23 +5,20 @@ function isValid(m::RTGmodel)
     #todo
 end
 
-"""
-"""
-function isSteady(m::RTGmodel)
-    if ismissing(m.u) || ismissing(m.p)
-        return false
-    end
 
-    
-    #todo 
+function getSteadyU(m::RTGmodel; ssmethod=SSMETHOD)
+    #todo
+    prob = DEsteady(func=m.model, u0=m.u, p=m.p, method=rs.SSMETHOD)
+    return solve(prob)
 end
 
-function getSteadyU(m::RTGmodel)
-    #todo
-end
-
-function getSteady(m::RTGmodel)
-    #todo
+"""
+"""
+function getSteady(m::RTGmodel;kwags...)
+    u_ss = getSteadyU(m;kwags...)
+    model = construct(m)
+    m_ss = model(m;u=u_ss)
+    return m_ss
 end
 
 function knockout(m::RTGmodel, prName; del_conc=DEL_CONC)
@@ -32,3 +29,10 @@ function getConditions(;csvPath=COND_DATA_PATH)
     RTG_Response_Boolean = DataFrame(CSV.File(csvPath))
     return RTG_Response_Boolean 
 end
+
+
+
+"""
+Get constructor from a data type
+"""
+construct(datatype) = typeof(datatype).name.wrapper

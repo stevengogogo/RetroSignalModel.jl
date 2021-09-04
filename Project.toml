@@ -4,6 +4,7 @@ authors = ["stevengogogo <stevengogogo4321@gmail.com> and contributors"]
 version = "0.1.0"
 
 [deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 Calculus = "49dc2e85-a5d0-5ad3-a950-438e2897f1b9"
 Catalyst = "479239e8-5488-4da2-87a7-35f2df7eef83"
