@@ -9,6 +9,12 @@ using Test
 include("utils.jl")
 
 @testset "RetroSignalModel.jl" begin
+
+    @testset "Sampling parameters" begin
+        include("sampling.jl")
+    end
+
+    """
     @testset "Chemical Reaction Functions" begin
         include("chemical_reactions.jl")
     end
@@ -48,4 +54,6 @@ include("utils.jl")
     @testset "Latex equations" begin
         include("latex.jl")
     end
+    """
+    
 end

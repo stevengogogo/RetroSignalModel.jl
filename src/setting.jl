@@ -14,8 +14,8 @@
     CONC_SPAN = (1e-6, 10000.0)
 
     #Domain of Parameter Ranges"
-    K_SPAN = (0.01,10000.)
-    K_N_SPAN = (1.,16.)
+    K_dist = Exponential(10000.) #(0.01,10000.) 
+    K_N_dist = Geometric(0.1)
     S_SPAN = (1e-6,1.0)
 
     #Base of Loguniform"
