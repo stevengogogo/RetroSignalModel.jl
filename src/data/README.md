@@ -1,9 +1,15 @@
-# Responses of Yeast RTG proteins to mitochondrial damage
+# Dataset of Mitochondrial Retrograde signaling in Yeast
+
+
+
+## Responses of Yeast RTG proteins to mitochondrial damage
+
+> Data: [boolean_table_RTG13.csv](boolean_table_RTG13.csv)
 
 This folder contains summarized responses of mitochondrial retrograde signaling in yeast.
 
 
-## Components
+### Components
 
 |Standard Name|Variable Name|Details|
 |---|---|---|
@@ -13,7 +19,7 @@ This folder contains summarized responses of mitochondrial retrograde signaling 
 |Mks1|`mks1`|https://www.yeastgenome.org/locus/S000005020|
 
 
-## Definition of Response
+### Definition of Response
 
 In [1] and [2], RTG response is observed via GFP tags on either RTG1 or RTG3. In wild type, mitochondrial damage can cause these proteins to accumulate in the nucleus, resulting in the intensified brightness of the nucleus region observed by fluorescent microscopy. As shown in [boolean_table_RTG13.csv](boolean_table_RTG13.csv), the responses are categorized in binary results: whether GFP is accumulated in the nucleus in a given condition. Based on [1] and [2], there are 20 reactions listed in the table. 
 
@@ -25,7 +31,7 @@ For example, the following is one of the conditions mentioned in [1]:
 
 Under the columns of `rtg1`, `rtg2`, `rtg3` and `mks`, `0` means that the given protein is suppressed by knockout. On the other hand, `1` represent an expression of wild type. Also, `1` in `s` represent mitochondrial dysfunction, and `0` means the absence of mitochondrial damage. The `gfp` column describes the location of GFP tag. In this example, GFP tag is on `rtg3`. As known in [1], `Rtg3-GFP` translocates to the nucleus under this condition. Therefore, `Trans2Nuc` is marked as `1`, which means the GFP tags nucleus translocation happens.
 
-## Reactions
+### Reactions
 
 There are 20 reactions summarized in the table. Some conditions are yet to be explored; some are from [1] (Sekito et al. 2000) or [2] (Sekito et al. 2002). Missing conditions are labeled with `NA`.
 
@@ -53,6 +59,35 @@ There are 20 reactions summarized in the table. Some conditions are yet to be ex
 |21|[2]|
 
 
-## References
+### References
 1. Sekito, Takayuki, Janet Thornton, and Ronald A. Butow. "Mitochondria-to-nuclear signaling is regulated by the subcellular localization of the transcription factors Rtg1p and Rtg3p." Molecular biology of the cell 11.6 (2000): 2103-2115.
 2. Sekito, Takayuki, Zhengchang Liu, Janet Thornton, and Ronald A. Butow. “RTG-Dependent Mitochondria-to-Nucleus Signaling Is Regulated by MKS1 and Is Linked to Formation of Yeast Prion [URE3].” Molecular Biology of the Cell 13, no. 3 (March 2002): 795–804. https://doi.org/10.1091/mbc.01-09-0473.
+
+---
+
+## Differential Gene Expression 
+
+> Data: [RNAseq_RTG_expression.csv](RNAseq_RTG_expression.csv)
+> Raw data and analysis: [RNAseq_RTG_expression](RNAseq_RTG_expression)
+
+![D3e RTG expression level](RNAseq_RTG_expression/img/stressed_response_mean.png)
+> *This figure is produced by [RNAseq_RTG_expression/analysis_RNA-Seq.ipynb](RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)*
+
+### Whole genome RNA seuqencing under normal and osmotic stress condition in yeast 
+
+Whole genome RNA sequencing was performed under normal condition and osmotic stress [1] (GEO database's access number: GSE102475). This paper is selected because all RTG-related gene expressions are covered in this research, and this paper also provides stress condition that is informative to investigate the range of expressions of RTG elements. 
+
+The original data is downloaded and stored at [Single Cell RNAseq_yeast_GSE102475.xlsx](RNAseq_RTG_expression/data/Single Cell RNAseq_yeast_GSE102475.xlsx). 
+
+
+### RTG differential gene expression
+
+
+By using the differential gene expression [2], the relative expressions of Rtg1, Rtg2, Rtg3, Bmh1, Mks1 and Cit2 can be extracted from 
+
+
+
+### References
+
+1. Gasch, Audrey P., et al. "Single-cell RNA sequencing reveals intrinsic and extrinsic regulatory heterogeneity in yeast responding to stress." PLoS biology 15.12 (2017): e2004050. URL: https://doi.org/10.1371/journal.pbio.2004050
+2. Delmans, Mihails, and Martin Hemberg. "Discrete distributional differential expression (D3E)-a tool for gene expression analysis of single-cell RNA-seq data." BMC bioinformatics 17.1 (2016): 1-13. URL: https://doi.org/10.1186/s12859-016-0944-6

@@ -6,9 +6,8 @@ models = [
     rs.rtgM4(),
 ]
 
-getSteadyU.(models)
-getSteady.(models)
-[knockout(m, "rtg1") for m in models] 
+rs.getSteady.(models)
+[rs.knockout(m, "rtg1") for m in models] 
 
-@test isValid(rs.rtgM4()) == true
-@test isSteady(rs.rtgM4()) == true
+@test rs.isValid(rs.rtgM4()) == true
+@test rs.isSteady(rs.rtgM4()) == true

@@ -6,18 +6,24 @@ function isValid(m::RTGmodel)
 end
 
 
-function getSteadyU(m::RTGmodel; ssmethod=SSMETHOD)
+function getSteadySol(m::RTGmodel; ssmethod=SSMETHOD)
     #todo
-    prob = DEsteady(func=m.model, u0=m.u, p=m.p, method=rs.SSMETHOD)
-    return solve(prob)
+    prob = DEsteady(func=m.model, u0=m.u, p=m.p, method=ssmethod)
+    sol = solve(prob)
+    return sol
 end
 
 """
+Returm RTGmodel with `u` in steady state
 """
-function getSteady(m::RTGmodel;kwags...)
-    u_ss = getSteadyU(m;kwags...)
+function getSteady(m::RTGmodel;warning=true, kwags...)
+    sol_ss = getSteadySol(m;kwags...)
     model = construct(m)
-    m_ss = model(m;u=u_ss)
+    m_ss = model(m;u=sol_ss.u)
+
+    # Warning
+    warning && sol_ss.retcode == :Success ? @warn("Steady state not found with resid=$(sol_ss.resid)") : nothing
+
     return m_ss
 end
 
