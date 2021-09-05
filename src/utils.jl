@@ -17,7 +17,7 @@ construct(datatype) = typeof(datatype).name.wrapper
 function findID(sNames, features; convert_lower = true)
     sNames = convert_lower ? lowercase.(sNames) : sNames
     features = convert_lower ? lowercase.(features) : features
-    idxs = Vector{Int}
+    idxs = Vector{Int}()
     for (ind, i) in enumerate(sNames)
         isEle = true
         for f in features
