@@ -143,7 +143,7 @@ The mean expression values (`mu1` in [analysis_RNA-Seq.ipynb](src/data/RNAseq_RT
 
 The following steps are needed to execute Jupyter notebooks under [src/data/RNAseq_RTG_expression/](src/data/RNAseq_RTG_expression/). Noted that those notebooks are written in Python 3.7.
 
-1. Install Python 3.7 (https://www.python.org/)
+1. Install Python 3.7 or above (https://www.python.org/)
 2. Install pip3 (https://pip.pypa.io/en/stable/)
 3. Install Python packages
     ```
