@@ -1,9 +1,11 @@
 using Revise
+using DataFrames
+import CSV
 import RetroSignalModel as rs
 using Test
 
 
-@testset "Chemical Reaction Functions" begin
+@testset "Data files" begin
     include("load_data.jl")
 end
 

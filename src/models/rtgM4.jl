@@ -2,6 +2,7 @@
     model::A = rtgM4_model()
     u::B = rtgM4_u()
     p::C = rtgM4_p()
+    protein_lookup = model
 end
 
 
@@ -49,7 +50,7 @@ function rtgM4_model()
 end
 
 function rtgM4_u()
-    u = LVector(
+    u = (;
         s = 0.0,
         Rtg2_ina_c = 651.6543766184084,
         Rtg2_act_c = 0.0,
@@ -73,7 +74,7 @@ end
 
 
 function rtgM4_p()
-    p = LVector(
+    p = (;
         n_s= 7.0,
         ksV= 11.672453857459798,
         ksD= 0.9652060600816972,
