@@ -25,7 +25,6 @@ Use the following script to install this package in Julia REPL
 
 ```julia
 Using Pkg
-Pkg.activate(“.”) # create a new environment
 Pkg.add(url="https://github.com/stevengogogo/RetroSignalModel.jl#master")
 ```
 
