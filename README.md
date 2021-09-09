@@ -22,11 +22,12 @@ This repository is a Julia package. To use this function, one needs to install J
 
 Julia 1.6 or above
 Use the following script to install this package in Julia REPL
-    ```julia
-    Using Pkg
-    Pkg.activate(“.”) # create a new environment
-   Pkg.add(url="https://github.com/stevengogogo/RetroSignalModel.jl#master")
-    ```
+
+```julia
+Using Pkg
+Pkg.activate(“.”) # create a new environment
+Pkg.add(url="https://github.com/stevengogogo/RetroSignalModel.jl#master")
+```
 
 
 ## Implementation details
