@@ -1,8 +1,8 @@
 @with_kw struct rtgM4{A,B,C} <: RTGmodel
     model::A = rtgM4_model()
+    protein_lookup = get_protein_lookup(model)
     u::B = rtgM4_u()
     p::C = rtgM4_p()
-    protein_lookup = model
 end
 
 
@@ -47,10 +47,14 @@ function rtgM4_model()
 
         #(k4, kn4), Rtg13_a_c ↔ Rtg13_a_n # Deleted [2]
     end n_s ksV ksD k2I k2M kn2M kBM knBM k13I k13IV k13ID k3A_c k3I_c k3I_n k13_c kn13_c k13_n kn13_n k1in k1out k3inA k3outA k3inI k3outI
+    return model
 end
 
+"""
+
+"""
 function rtgM4_u()
-    u = (;
+    u = SLVector(
         s = 0.0,
         Rtg2_ina_c = 651.6543766184084,
         Rtg2_act_c = 0.0,
@@ -72,9 +76,11 @@ function rtgM4_u()
     return u
 end
 
-
+"""
+A valid parameter set
+"""
 function rtgM4_p()
-    p = (;
+    p = SLVector(
         n_s= 7.0,
         ksV= 11.672453857459798,
         ksD= 0.9652060600816972,

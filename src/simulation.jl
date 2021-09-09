@@ -9,6 +9,8 @@ function getOutput(m::RTGmodel)
     #todo
 end
 
+"""
+"""
 function knockout(m::RTGmodel, prName; del_conc=DEL_CONC)
     #todo
 end
@@ -28,9 +30,10 @@ end
 Returm [RTGmodel](@ref) with `u` in steady state.
 """
 function getSteady(m::RTGmodel;warning=true, kwags...)
+    # consider
     sol_ss = getSteadySol(m, m.u;kwags...)
     model = construct(m)
-    m_ss = model(m;u=sol_ss.u)
+    m_ss = model(m,sol_ss.u, m.p, m.protein_lookup)
 
     # Warning
     warning && sol_ss.retcode == :Success ? @warn("Steady state not found with resid=$(sol_ss.resid)") : nothing

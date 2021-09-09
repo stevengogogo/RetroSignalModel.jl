@@ -1,7 +1,8 @@
 @with_kw struct rtgM2{A,B,C} <: RTGmodel
     model::A = rtgM2_model()
-    u::B = missing
-    p::C = missing
+    protein_lookup = get_protein_lookup(model)
+    p::C = init_p(model; idx_hill_coefs=[])
+    u::B = init_u(model, protein_lookup)
 end
 
 
@@ -51,5 +52,5 @@ function rtgM2_model()
         #(k4, kn4), Rtg13_a_c ↔ Rtg13_a_n # Deleted [2]
     end k1mk k1md k1mk kn1md k2md kn2md k3md kn3md k1 k1m k2 k2n k3 kn3 k4 kn4 kt1 ktd1 kt1nu ktd1nu kt2 ktd2 kt2nu ktd2nu k3nu kn3nu
 
-    return rtgM2_model
+    return rtgM2
 end

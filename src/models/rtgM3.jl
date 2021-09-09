@@ -1,7 +1,8 @@
 @with_kw struct rtgM3{A,B,C} <: RTGmodel
     model::A = rtgM3_model()
-    u::B = missing
-    p::C = missing
+    protein_lookup = get_protein_lookup(model)
+    p::C = init_p(model; idx_hill_coefs=[])
+    u::B = init_u(model, protein_lookup)
 end
 
 

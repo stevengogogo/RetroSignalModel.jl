@@ -1,7 +1,8 @@
 @with_kw struct actM1{A,B,C} <: RTGmodel
     model::A = actM1_model()
-    u::B = missing
-    p::C = missing
+    protein_lookup = get_protein_lookup(model)
+    p::C = init_p(model; idx_hill_coefs=[])
+    u::B = init_u(model, protein_lookup)
 end
 
 

@@ -9,6 +9,9 @@ using ModelingToolkit
 using Random 
 using LabelledArrays
 using FindSteadyStates
+using Distributions
+using GLPK
+import JuMP as jp
 
 
 include("utils.jl")

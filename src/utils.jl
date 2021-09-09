@@ -1,5 +1,11 @@
 readCSV(fn) = DataFrame(CSV.File(fn))
 
+function catalyst_name(m::ReactionSystem;fcall=Catalyst.species,remove_t=true) 
+    spec_names_t = string.(fcall(m))
+    spec_names = remove_t ? replace.(spec_names_t, "(t)"=>"") : spec_names_t
+    return spec_names
+end
+
 function getTables(csv_fns::NamedTuple)
     dfs = [] 
     for fn in csv_fns 
