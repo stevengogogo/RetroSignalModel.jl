@@ -36,3 +36,13 @@ function findID(sNames, features; convert_lower = true)
     end
     return idxs
 end
+
+"""
+Scale maximum element to `capVal`. `v` is a vector
+"""
+function capVec(v, capVal)
+    i = argmax(v)
+    scale = capVal/v[i]
+    V_cap = v .* scale 
+    return V_cap
+end
