@@ -49,6 +49,14 @@ function setTuple(tup, fieldname, newVal)
 end
 
 """
+Change tuple elements and return a new one
+"""
+function setTuples(tup, fieldnames, newVals)
+    newT = NamedTuple{tuple(fieldnames...)}(tuple(newVals...))
+    return merge(tup, newT)
+end
+
+"""
 Create initial values of reaction systems based on protein total concentration.
 Each concentration is solved by Linear programming.
 """
@@ -72,9 +80,8 @@ function init_u(model::ReactionSystem, protein_lookup; expLevels=getExpLevels(;c
     u_opt[idx_s] = init_s
 
     # U vec constructor 
-    U = @SLVector tuple(Symbol.(catalyst_name(model))...)
-
-    return U(u_opt...)
+    U = @LArray u_opt tuple(Symbol.(catalyst_name(model))...)
+    return U
 end
 
 function init_u(m::RTGmodel;kwags...)
@@ -91,6 +98,6 @@ function init_p(m::ReactionSystem; idx_hill_coefs=[1], K_dist=K_dist, K_N_dist=K
 
     Names = catalyst_name(m;fcall=Catalyst.params)
 
-    U = @SLVector tuple(Symbol.(Names)...)
-    return U(p...)
+    U = @LArray p tuple(Symbol.(Names)...)
+    return U
 end

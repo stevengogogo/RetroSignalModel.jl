@@ -10,8 +10,8 @@ IsNucAccum(res::RTGoutput) = res.IsNucAccum
 """
 Validate responses 
 """
-function isValid(m::RTGmodel)
-    #todo
+function isValid(m::RTGmodel;kwags...)
+    return try_conditions(m;kwags...)
 end
 
 function getOutput(m::RTGmodel, gfp;kwags...)
@@ -47,8 +47,10 @@ end
 """
 Knockout specified protein with name [`prName`](@ref), and set as low concentration equal to [`DEL_CONC`](@ref)
 """
-function knockout(m::RTGmodel, prName::Symbol; del_conc=DEL_CONC, WildExpLevels::NamedTuple=getExpLevels(;condition=DefaultCondition), kwags...)
-    knockout_exp = setTuple(WildExpLevels, prName, del_conc)
+function knockout(m::RTGmodel, prNames; del_conc=DEL_CONC, WildExpLevels::NamedTuple=getExpLevels(;condition=DefaultCondition), kwags...)
+    
+    newConcs = fill(del_conc,length(prNames))
+    knockout_exp = setTuples(WildExpLevels, prNames,newConcs)
     u = init_u(m;expLevels=knockout_exp,kwags...)
     return u
 end
@@ -80,3 +82,52 @@ function getSteady(m::RTGmodel;warning=true, kwags...)
     return m_ss
 end
 
+"""
+Try conditions of the model with given initial variables and parameters.
+"""
+function try_conditions(m::RTGmodel;expLevels=getExpLevels(;condition=DefaultCondition), S_SPAN=S_SPAN, del_conc=DEL_CONC, TRANS_THRESHOLD=TRANS_THRESHOLD, SSMETHOD=SSMETHOD, conditions=getConditions(;df=DataTables.BoolCond), Break=true, Cond_random=true, s_idx=1)
+    valid = true 
+    num_cond = size(conditions)[1]
+
+    # Knockout Candidates 
+    iExs = findall(x->x in  Symbol.(names(conditions)), keys(expLevels))
+    prNames = collect(keys(expLevels)[iExs])
+
+    # Shuffling conditions 
+    trial_cond_order = Cond_random ? shuffle(1:num_cond) : 1:num_cond 
+    test_log = Vector{Union{Missing, Int16}}(missing, num_cond)
+
+    # Get steady state 
+    df_pr = conditions[!, prNames]
+
+    for tn in trial_cond_order 
+        conPr = df_pr[tn, :]
+        cond = conditions[tn, :]
+
+        # Get knockout protein names
+        Pr_Exts = values(df_pr[tn, prNames])
+        i_dels = findall(x->x==0, Pr_Exts)
+        prName_dels = prNames[i_dels]
+
+        # Knockout 
+        u_k = knockout(m, prName_dels; del_conc=del_conc)
+        u_k[s_idx] = S_SPAN[cond[:s] + 1]
+
+        # Steady state 
+        u_ss = getSteadySol(m, u_k;ssmethod=SSMETHOD)
+        
+        # Status of RTG switch
+        output = getOutput(u_ss, cond[:gfp], m.protein_lookup; threshold = TRANS_THRESHOLD)
+
+        test_log[tn] = IsNucAccum(output)
+        if IsNucAccum(output) == cond[:Trans2Nuc]
+            continue 
+        else 
+            valid = 0 
+            if Break 
+                break
+            end
+        end
+    end
+    return valid
+end

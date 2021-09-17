@@ -54,7 +54,7 @@ end
 
 """
 function rtgM4_u()
-    u = SLVector(
+    u = LVector(
         s = 0.0,
         Rtg2_ina_c = 651.6543766184084,
         Rtg2_act_c = 0.0,
@@ -80,7 +80,7 @@ end
 A valid parameter set
 """
 function rtgM4_p()
-    p = SLVector(
+    p = LVector(
         n_s= 7.0,
         ksV= 11.672453857459798,
         ksD= 0.9652060600816972,

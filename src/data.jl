@@ -4,5 +4,13 @@ function getExpLevels(;df=DataTables.RNAseq, condition="unstressed", Max_expr=Ma
     ex = capVec(ex, Max_expr)
     return NamedTuple{tuple(Symbol.(prNames)...)}(tuple(ex...))
 end
-getConditions(;df=DataTables.BoolCond) = df
+
+
+function getConditions(;df=DataTables.BoolCond, drop_missing=true) 
+    if drop_missing 
+        return dropmissing(df)
+    else
+        return df
+    end
+end
 

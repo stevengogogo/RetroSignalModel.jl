@@ -6,12 +6,12 @@ end
 exp = rs.getExpLevels()
 cond = rs.getConditions()
 
-prNamesRNA = ["rtg1", "rtg2", "rtg3", "bmh", "mks"]
-prNamesCond = ["rtg1", "rtg2", "rtg3", "mks"]
+prNamesRNA = [:Rtg1, :Rtg2, :Rtg3, :Bmh, :Mks]
+prNamesCond = ["Rtg1", "Rtg2", "Rtg3", "Mks"]
 
 
 @testset "Protein name availability (RNA-Seq)" for pr in prNamesRNA 
-    @test pr in exp."protein"
+    @test pr in collect(keys(exp))
 end
 @testset "Protein name availability (Conditions)" for pr in prNamesCond
     @test pr in names(cond)
@@ -20,5 +20,3 @@ end
 @test "s" in names(cond)
 @test "gfp" in names(cond)
 @test "Trans2Nuc" in names(cond)
-
-@test "protein" in names(exp)
