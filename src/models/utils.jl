@@ -41,10 +41,18 @@ function _find_id(df, ext_func)
 end
 
 """
+Change tuple element and return a new one
+"""
+function setTuple(tup, fieldname, newVal)
+    newT = NamedTuple{tuple(fieldname)}(newVal)
+    return merge(tup, newT)
+end
+
+"""
 Create initial values of reaction systems based on protein total concentration.
 Each concentration is solved by Linear programming.
 """
-function init_u(model::ReactionSystem, protein_lookup; expLevels=getExpLevels(;condition="stressed"), idx_s::Integer = 1, init_s=S_SPAN[1], optimizer=GLPK.Optimizer)
+function init_u(model::ReactionSystem, protein_lookup; expLevels=getExpLevels(;condition=DefaultCondition), idx_s::Integer = 1, init_s=S_SPAN[1], optimizer=GLPK.Optimizer)
     RTGm = jp.Model(optimizer)
     numVar = _find_id(protein_lookup, maximum) 
     jp.@variables(RTGm, begin 

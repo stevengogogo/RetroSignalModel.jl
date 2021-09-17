@@ -1,3 +1,12 @@
+struct RTGoutput{T}
+    IsNucAccum::Bool 
+    Conc_Cyt::T
+    Conc_Nuc::T
+    threshold::T
+end
+
+IsNucAccum(res::RTGoutput) = res.IsNucAccum
+
 """
 Validate responses 
 """
@@ -5,15 +14,45 @@ function isValid(m::RTGmodel)
     #todo
 end
 
-function getOutput(m::RTGmodel)
-    #todo
+function getOutput(m::RTGmodel, gfp;kwags...)
+    return getOutput(m.u, gfp, m.protein_lookup; kwags...)
 end
 
 """
+Compare the cytosolic concentration of either 'rtg1' or 'rtg3' with their nucleus concentrations.
+Output:
+1 : nucleus concentration is higher than the cytosolic one
+0 : otherwise
 """
-function knockout(m::RTGmodel, prName; del_conc=DEL_CONC)
-    #todo
+function getOutput(sol, gfp, protein_lookup; threshold = TRANS_THRESHOLD)
+    gfp = lowercase(gfp)
+    if gfp == "rtg1"
+        cyt_index = protein_lookup[:Rtg1_c]
+        nuc_index = protein_lookup[:Rtg1_n]
+    elseif gfp == "rtg3"
+        cyt_index = protein_lookup[:Rtg3_c]
+        nuc_index = protein_lookup[:Rtg3_n]
+    else
+        throw(MathodError)
+    end
+
+    total_conc_cyt = sum(sol[cyt_index])
+    total_conc_nuc = sum(sol[nuc_index])
+
+    NucAccum = total_conc_nuc > threshold*total_conc_cyt ? true : false
+
+    return RTGoutput(NucAccum, total_conc_cyt, total_conc_nuc, threshold)
 end
+
+"""
+Knockout specified protein with name [`prName`](@ref), and set as low concentration equal to [`DEL_CONC`](@ref)
+"""
+function knockout(m::RTGmodel, prName::Symbol; del_conc=DEL_CONC, WildExpLevels::NamedTuple=getExpLevels(;condition=DefaultCondition), kwags...)
+    knockout_exp = setTuple(WildExpLevels, prName, del_conc)
+    u = init_u(m;expLevels=knockout_exp,kwags...)
+    return u
+end
+
 
 
 """
