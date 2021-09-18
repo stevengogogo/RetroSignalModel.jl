@@ -58,7 +58,7 @@ end
 
 
 """
-Solve steady state of [RTGmodel](@ref) based on given initial variables (`u`). Noted that fieldname `u` is ignored.
+Solve steady state of [`RTGmodel`](@ref) based on given initial variables (`u`). Noted that fieldname `u` is ignored.
 """
 function getSteadySol(m::RTGmodel, u; ssmethod=SSMETHOD)
     #todo
@@ -68,7 +68,7 @@ function getSteadySol(m::RTGmodel, u; ssmethod=SSMETHOD)
 end
 
 """
-Returm [RTGmodel](@ref) with `u` in steady state.
+Returm [`RTGmodel`](@ref) with `u` in steady state.
 """
 function getSteady(m::RTGmodel;warning=true, kwags...)
     # consider
@@ -81,6 +81,7 @@ function getSteady(m::RTGmodel;warning=true, kwags...)
 
     return m_ss
 end
+
 
 """
 Try conditions of the model with given initial variables and parameters.
