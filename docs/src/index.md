@@ -9,4 +9,5 @@ CurrentModule = RetroSignalModel
 
 ```@autodocs
 Modules = [RetroSignalModel]
+Order   = [:type, :function, :constant]
 ```

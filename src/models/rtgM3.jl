@@ -10,13 +10,15 @@ end
 This model is modified version of rtgM2.
 Major changes:
 1. Change input to be michaelis menten
-2. Change the translocation to be Michaelis menten: (which is not ture). See the supplemental material of https://www.pnas.org/content/pnas/suppl/2006/06/30/0604085103.DC1/04085SuppText.pdf
+2. Change the translocation to be Michaelis menten: (which is not ture). See [supplemental material](https://www.pnas.org/content/pnas/suppl/2006/06/30/0604085103.DC1/04085SuppText.pdf)
 3. Rtg1p and Rtg3p enter nucleus separately
 
-Ref:
-1. https://science.sciencemag.org/content/339/6118/460
-2. https://www.pnas.org/content/pnas/suppl/2006/06/30/0604085103.DC1/04085SuppText.pdf
-3. https://www.cell.com/molecular-cell/pdf/S1097-2765(04)00179-0.pdf (Reaction of Bmh-Mks on Rtg13 dimer)
+References 
+-----------
+
+1. Hao, N., Budnik, B. A., Gunawardena, J., & O'Shea, E. K. (2013). Tunable signal processing through modular control of transcription factor translocation. Science, 339(6118), 460-464. [[Article](https://science.sciencemag.org/content/339/6118/460), [SOM](https://www.pnas.org/content/pnas/suppl/2006/06/30/0604085103.DC1/04085SuppText.pdf)]
+
+2. Mitochondrial Signaling: The Retrograde Response. 2004. (Reaction of Bmh-Mks on Rtg13 dimer) [[Article](https://www.cell.com/molecular-cell/pdf/S1097-2765(04)00179-0.pdf)]
 """
 function rtgM3_model()
     rtgM3= @reaction_network  begin

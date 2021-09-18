@@ -2,7 +2,9 @@ const COND_DATA_PATH = joinpath(@__DIR__,"data","boolean_table_RTG13.csv")
 const DEL_CONC = 1e-4
 
 """
-Steady state solver. A Stiff solver is chosen `TRBDF2` (stand for Tranpezoidal Backward Differeital Formula) from **DifferentialEquations.jl** for robust simulation of stability. 
+Steady state solver. 
+
+A Stiff solver is chosen `TRBDF2` (stand for Tranpezoidal Backward Differeital Formula) from **DifferentialEquations.jl** for robust simulation of stability. 
 
 `TRBF2` is a one-step method based on trapezoidal rule and the backward differentiaion formula of order 2, and it is strongly L-stable that means `TRBFS` is good at integrating stiff equations [1]. 
 
