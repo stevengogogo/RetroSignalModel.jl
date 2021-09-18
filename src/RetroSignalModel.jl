@@ -1,23 +1,25 @@
-module RetroSignalModel
+module RetroSignalModel 
 
-using Catalyst
-using LabelledArrays
-using Parameters
-using DataFrames
-using Calculus
-using CSV
+using Catalyst 
+using Parameters 
+using DataFrames 
+using CSV 
 using DifferentialEquations
 using ModelingToolkit
-using Random
+using Random 
+using LabelledArrays
 using FindSteadyStates
+using Distributions
+using GLPK
+import JuMP as jp
 
-include("Data.jl")
-include("models.jl")
+
 include("utils.jl")
-include("setting.jl")
-include("validation.jl")
+include("settings.jl")
+include("models/models.jl")
+include("data.jl")
+include("simulation.jl")
 
 
-using .Data
 
 end
