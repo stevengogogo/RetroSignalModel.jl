@@ -9,7 +9,7 @@ Pkg.status()
 @time using Revise, Distributed, RetroSignalModel, CSV
 import RetroSignalModel as rs
 #' Add workers
-addprocs(1,exeflags="--project=$(Base.active_project())");
+addprocs(exeflags="--project=$(Base.active_project())");
 @show nprocs();
 
 #' Load library to workers
