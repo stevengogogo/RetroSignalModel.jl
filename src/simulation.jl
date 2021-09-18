@@ -11,7 +11,8 @@ IsNucAccum(res::RTGoutput) = res.IsNucAccum
 Validate responses 
 """
 function isValid(m::RTGmodel;kwags...)
-    return try_conditions(m;kwags...)
+    valid, _ =try_conditions(m;kwags...)
+    return valid
 end
 
 function getOutput(m::RTGmodel, gfp;kwags...)
@@ -126,11 +127,11 @@ function try_conditions(m::RTGmodel;expLevels=getExpLevels(;condition=DefaultCon
         if IsNucAccum(output) == cond[:Trans2Nuc]
             continue 
         else 
-            valid = 0 
+            valid = false 
             if Break 
                 break
             end
         end
     end
-    return valid
+    return valid, test_log
 end

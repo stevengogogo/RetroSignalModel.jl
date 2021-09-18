@@ -11,6 +11,8 @@ using LabelledArrays
 using FindSteadyStates
 using Distributions
 using GLPK
+using ProgressMeter
+using Distributed
 import JuMP as jp
 
 
@@ -19,6 +21,7 @@ include("settings.jl")
 include("models/models.jl")
 include("data.jl")
 include("simulation.jl")
+include("paramSearch.jl")
 
 
 
