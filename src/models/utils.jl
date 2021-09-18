@@ -93,7 +93,7 @@ end
 function init_p(m::ReactionSystem; idx_hill_coefs=[1], K_dist=K_dist, K_N_dist=K_N_dist)
     p = rand(K_dist, length(Catalyst.params(m)))
     for i in idx_hill_coefs
-        p[i] = rand(K_N_dist)
+        p[i] = rand(K_N_dist) + 1
     end
 
     Names = catalyst_name(m;fcall=Catalyst.params)
