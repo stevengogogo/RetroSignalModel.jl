@@ -11,6 +11,8 @@ using LabelledArrays
 using FindSteadyStates
 using Distributions
 using GLPK
+using ProgressMeter
+using Distributed
 import JuMP as jp
 
 
