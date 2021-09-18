@@ -6,12 +6,14 @@ models = [
     rs.rtgM4(),
 ]
 
+m4=rs.rtgM4()
+m4rand = rs.rtgM4(m4; u=rs.init_u(m4))
+rs.getSteady(m4rand)
+
 @show rs.get_protein_lookup(models[end].model)
 
 rs.getSteady.(models)
-[rs.knockout(m, ["rtg1"]) for m in models] 
+[rs.knockout(m, [:Rtg1]) for m in models] 
 
 @test rs.isValid(rs.rtgM4()) == true
-@test rs.isSteady(rs.rtgM4()) == true
-
 @test rs.try_conditions(models[end]) == true

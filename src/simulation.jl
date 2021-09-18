@@ -85,7 +85,9 @@ end
 """
 Try conditions of the model with given initial variables and parameters.
 """
-function try_conditions(m::RTGmodel;expLevels=getExpLevels(;condition=DefaultCondition), S_SPAN=S_SPAN, del_conc=DEL_CONC, TRANS_THRESHOLD=TRANS_THRESHOLD, SSMETHOD=SSMETHOD, conditions=getConditions(;df=DataTables.BoolCond), Break=true, Cond_random=true, s_idx=1)
+function try_conditions(m::RTGmodel;expLevels=getExpLevels(;condition=DefaultCondition), S_SPAN=S_SPAN, del_conc=DEL_CONC, TRANS_THRESHOLD=TRANS_THRESHOLD, SSMETHOD=SSMETHOD, conditions=getConditions(;df=DataTables.BoolCond), Break=true, Cond_random=true, input_name="s")
+
+    s_idx = findfirst(x->x==input_name, catalyst_name(m.model))
     valid = true 
     num_cond = size(conditions)[1]
 
