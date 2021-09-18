@@ -19,6 +19,7 @@ include("settings.jl")
 include("models/models.jl")
 include("data.jl")
 include("simulation.jl")
+include("paramSearch.jl")
 
 
 
