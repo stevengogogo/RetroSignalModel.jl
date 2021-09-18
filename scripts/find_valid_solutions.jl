@@ -1,6 +1,8 @@
 
 #' Environment
 using Pkg
+Pkg.activate(@__DIR__)
+cd(@__DIR__)
 Pkg.status()
 
 #' Load library to main worker

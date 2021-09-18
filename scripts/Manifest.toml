@@ -881,7 +881,7 @@ version = "1.1.1"
 
 [[RetroSignalModel]]
 deps = ["BenchmarkTools", "CSV", "Calculus", "Catalyst", "DataFrames", "DifferentialEquations", "Distributed", "Distributions", "FindSteadyStates", "GLPK", "JuMP", "LabelledArrays", "Latexify", "ModelingToolkit", "Parameters", "ProgressMeter", "Random", "Revise"]
-git-tree-sha1 = "617e997f64868b5b83258f6490fda41dc4800e72"
+git-tree-sha1 = "e49d9e54f8da5e2aa94180d1d45c15a3f7d76553"
 repo-rev = "master"
 repo-url = "https://github.com/stevengogogo/RetroSignalModel.jl"
 uuid = "413adb04-e75d-4cfe-b7ca-413dd9cc07d4"
