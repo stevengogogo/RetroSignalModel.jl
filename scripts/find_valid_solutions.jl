@@ -16,7 +16,7 @@ addprocs(exeflags="--project=$(Base.active_project())");
 @time @everywhere using Revise, RetroSignalModel;
 
 #' Parameter searching
-@time df = rs.paramSearching(rs.rtgM4(); num_sim=100, distributed=true, saveall=true)
+@time df = rs.paramSearching(rs.rtgM4(); num_sim=1000000, save_iter=100000,distributed=true, saveall=false)
 
 #'
 CSV.write("data/valid_sol.csv", df)

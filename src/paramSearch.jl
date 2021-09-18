@@ -14,20 +14,29 @@ julia> @time rs.paramSearching(rs.rtgM4(); num_sim=100, distributed=true, saveal
   2.378919 seconds (78.95 k allocations: 4.964 MiB)
 ```
 """
-function paramSearching(m::RTGmodel;num_sim::Int64=10, distributed=false, batch_size=nprocs(),conditions=getConditions(;df=DataTables.BoolCond), kwags...)
+function paramSearching(m::RTGmodel;num_sim=10, save_iter=num_sim, distributed=false, saveall=true,batch_size=nprocs(),conditions=getConditions(;df=DataTables.BoolCond), kwags...)
     #create table 
     df = get_search_df(m, conditions)
 
-    # parameter searching 
-    res = @showprogress pmap( x->paramSearching_Once(x[1];conditions=x[2], x[3]...), 
-                            fill([m, conditions, kwags], num_sim),
-                            distributed=distributed,
-                            batch_size=batch_size)
+    ran = 1:save_iter:num_sim
+    iter = ran.step
+    try
+        for _ in 1:length(ran)       
+            # parameter searching 
+            res =  @showprogress  pmap( x->paramSearching_Once(x[1];conditions=x[2], x[3]...), 
+                                    fill([m, conditions, kwags], iter),
+                                    distributed=distributed,
+                                    batch_size=batch_size)
 
-    # Merge result
-    map(r-> push_sim!(df, r.test_log, r.p, r.u), res)
+            # Merge result
+            map(r-> r.isValid || saveall ? push_sim!(df, r.test_log, r.p, r.u) : nothing, res)
+        end
+        return df
+    catch e 
+        return df
+    end
 
-    return df
+    
 end
 
 
