@@ -40,6 +40,27 @@ https://stevengogogo.github.io/RetroSignalModel.jl/dev/
 
 > See folder [src/data](src/data)
 
+
+## Solutions of retrograde signaling model 
+
+> Data: [`solution_rtgM4.csv`](src/data/solution_rtgM4.csv)
+
+This file is generated and modified from [`scripts/find_valid_solutions.jl`](scripts/find_valid_solutions.jl). All solutions are corresponding to the knockout experiments of [1] and [2].
+
+### Usage
+
+```julia
+import RetroSignalModels as rs
+m = rs.rtgM4(1)
+rs.isValid(m)
+```
+
+```
+true
+```
+
+This scripts uses the solution in first row of [`solution_rtgM4.csv`](src/data/solution_rtgM4.csv). The validation function (`rs.isValid`) tests the given model with the conditions in [boolean_table_RTG13.csv](src/data/boolean_table_RTG13.csv), and return `true` if all responses are identical to [1] and [2].
+
 ## Responses of Yeast RTG proteins to mitochondrial damage
 
 > Data: [boolean_table_RTG13.csv](src/data/boolean_table_RTG13.csv)
@@ -139,7 +160,7 @@ The mean expression values (`mu1` in [analysis_RNA-Seq.ipynb](src/data/RNAseq_RT
 |[d3e_SC_resp_RtgGenes_GSE102475.csv](src/data/RNAseq_RTG_expression/data/d3e_SC_resp_RtgGenes_GSE102475.csv)|Differential gene expression  (processed by https://www.sanger.ac.uk/sanger/GeneRegulation_D3E/)|
 
 
-### Installation
+#### Installation
 
 The following steps are needed to execute Jupyter notebooks under [src/data/RNAseq_RTG_expression/](src/data/RNAseq_RTG_expression/). Noted that those notebooks are written in Python 3.7.
 
