@@ -1,12 +1,8 @@
 name: Check markdown links
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+  - push
+  - pull_request
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * 1"  # Every Monday
