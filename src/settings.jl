@@ -21,7 +21,7 @@ const DataFiles = (;
     solution_rtgM4 = joinpath(@__DIR__,"data","solution_rtgM4.csv")
 )
 
-const default_sol_i = 3
+const default_sol_i = 1
 
 """
 Parameter searching

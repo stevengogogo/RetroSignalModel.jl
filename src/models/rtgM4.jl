@@ -5,7 +5,12 @@
     p::C = get_p(DataFiles.solution_rtgM4, model, default_sol_i)
 end
 
-
+function rtgM4(sol_id::Integer;sol_csv = DataFiles.solution_rtgM4)
+    model = rtgM4_model()
+    u = get_u(sol_csv, model, sol_id)
+    p = get_p(sol_csv, model, sol_id)
+    return rtgM4(u=u, p=p)
+end
 
 """
 Modified version from rtgM3
@@ -48,63 +53,4 @@ function rtgM4_model()
         #(k4, kn4), Rtg13_a_c ↔ Rtg13_a_n # Deleted [2]
     end n_s ksV ksD k2I k2M kn2M kBM knBM k13I k13IV k13ID k3A_c k3I_c k3I_n k13_c kn13_c k13_n kn13_n k1in k1out k3inA k3outA k3inI k3outI
     return model
-end
-
-"""
-
-"""
-function rtgM4_u()
-    u = LVector(
-        s = 0.0,
-        Rtg2_ina_c = 651.6543766184084,
-        Rtg2_act_c = 0.0,
-        Mks = 0.4062432721006166,
-        Rtg2Mks_c = 0.0,
-        Bmh = 9732.909523047472,
-        BmhMks = 267.09047695253264,
-        Rtg13_a_c = 1.4274087263484285,
-        Rtg13_i_c = 17.714161994146533,
-        Rtg3_i_c = 227.17595080074952,
-        Rtg3_a_c = 36.19618619564863,
-        Rtg3_a_n = 65.76199082382354,
-        Rtg3_i_n = 0.45661180302819115,
-        Rtg1_c = 58.80414604200244,
-        Rtg1_n = 7.203337949792787,
-        Rtg13_a_n = 60.352251822015404,
-        Rtg13_i_n = 0.4190498225319596
-    )
-    return u
-end
-
-"""
-A valid parameter set
-"""
-function rtgM4_p()
-    p = LVector(
-        n_s= 7.0,
-        ksV= 11.672453857459798,
-        ksD= 0.9652060600816972,
-        k2I= 4.947912367971165,
-        k2M= 1604.1502827169095,
-        kn2M= 0.04254255493422655,
-        kBM= 0.05895557134274864,
-        knBM= 2.412620893447476,
-        k13I= 0.09229304669754668,
-        k13IV= 2484.2634221986104,
-        k13ID= 25.13534590431395,
-        k3A_c= 30.70305169723245,
-        k3I_c= 0.012479519278799235,
-        k3I_n= 1.4869621407220823,
-        k13_c= 233.8066917491108,
-        kn13_c= 220.91514234006863,
-        k13_n= 461.0270088897297,
-        kn13_n= 0.595848762435901,
-        k1in= 3.196651589365529,
-        k1out= 5967.990311992441,
-        k3inA= 1.024908423419303,
-        k3outA= 0.048990374555417784,
-        k3inI= 0.03795742242697436,
-        k3outI= 0.12330849328071895
-    )
-    return p
 end

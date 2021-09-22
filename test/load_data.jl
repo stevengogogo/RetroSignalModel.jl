@@ -20,3 +20,13 @@ end
 @test "s" in names(cond)
 @test "gfp" in names(cond)
 @test "Trans2Nuc" in names(cond)
+
+
+# Solutions of rtgM4 
+@testset "Solutions to rtgM4" begin 
+    df = rs.readCSV(rs.DataFiles.solution_rtgM4)
+    num_sols = size(df)[1]
+    for i in 1:num_sols 
+        @test rs.isValid(rs.rtgM4(i))
+    end
+end

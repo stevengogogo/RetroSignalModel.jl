@@ -117,7 +117,6 @@ function get_param_csv(data_path, model::ReactionSystem, id; name_proc_f= x->x)
     paramNames = name_proc_f(model)
     paramD = df[id, paramNames]
     vals = collect(paramD)
-    @show vals
     pArr = NamedTuple{tuple(paramNames...)}(tuple(vals...))
     pArr = LVector(pArr)
     return pArr
