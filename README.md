@@ -84,11 +84,11 @@ In [1] and [2], RTG response is observed via GFP tags on either RTG1 or RTG3. In
 
 For example, the following is one of the conditions mentioned in [1]:
 
-|rtg1|rtg2|rtg3|s|mks|gfp|Trans2Nuc|
+|Rtg1|Rtg2|Rtg3|s|Mks|gfp|Trans2Nuc|
 |---|---|---|---|---|---|---|
 |0|0|1|1|1|rtg3|1|
 
-Under the columns of `rtg1`, `rtg2`, `rtg3` and `mks`, `0` means that the given protein is suppressed by knockout. On the other hand, `1` represent an expression of wild type. Also, `1` in `s` represent mitochondrial dysfunction, and `0` means the absence of mitochondrial damage. The `gfp` column describes the location of GFP tag. In this example, GFP tag is on `rtg3`. As known in [1], `Rtg3-GFP` translocates to the nucleus under this condition. Therefore, `Trans2Nuc` is marked as `1`, which means the GFP tags nucleus translocation happens.
+Under the columns of `Rtg1`, `Rtg2`, `Rtg3` and `Mks`, `0` means that the given protein is suppressed by knockout. On the other hand, `1` represent an expression of wild type. Also, `1` in `s` represent mitochondrial dysfunction, and `0` means the absence of mitochondrial damage. The `gfp` column describes the location of GFP tag. In this example, GFP tag is on `Rtg3`. As known in [1], `Rtg3-GFP` translocates to the nucleus under this condition. Therefore, `Trans2Nuc` is marked as `1`, which means the GFP tags nucleus translocation happens.
 
 ### Reactions
 
