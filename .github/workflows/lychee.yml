@@ -3,9 +3,6 @@ name: Check markdown links
 on:
   - push
   - pull_request
-  workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * 1"  # Every Monday
 
 jobs:
   linkChecker:
