@@ -17,8 +17,11 @@ const SSMETHOD = DynamicSS(TRBDF2())
 
 const DataFiles = (;
     RNAseq= joinpath(@__DIR__,"data","RNAseq_RTG_expression.csv"),
-    BoolCond = joinpath(@__DIR__,"data","boolean_table_RTG13.csv")
+    BoolCond = joinpath(@__DIR__,"data","boolean_table_RTG13.csv"),
+    solution_rtgM4 = joinpath(@__DIR__,"data","solution_rtgM4.csv")
 )
+
+const default_sol_i = 1
 
 """
 Parameter searching
