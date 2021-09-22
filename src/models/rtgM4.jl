@@ -1,8 +1,8 @@
 @with_kw struct rtgM4{A,B,C} <: RTGmodel
     model::A = rtgM4_model()
     protein_lookup = get_protein_lookup(model)
-    u::B = rtgM4_u()
-    p::C = rtgM4_p()
+    u::B = get_u(DataFiles.solution_rtgM4, model, default_sol_i)
+    p::C = get_p(DataFiles.solution_rtgM4, model, default_sol_i)
 end
 
 

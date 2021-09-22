@@ -101,3 +101,24 @@ function init_p(m::ReactionSystem; idx_hill_coefs=[1], K_dist=K_dist, K_N_dist=K
     U = @LArray p tuple(Symbol.(Names)...)
     return U
 end
+
+function get_u(data_path, model::ReactionSystem, id;)
+    name_proc_f = x-> Symbol.(catalyst_name(x))
+    return get_param_csv(data_path, model, id; name_proc_f=name_proc_f)
+end
+
+function get_p(data_path, model::ReactionSystem, id;)
+    name_proc_f = x-> Symbol.(Catalyst.params(x))
+    return get_param_csv(data_path, model, id; name_proc_f=name_proc_f)
+end
+
+function get_param_csv(data_path, model::ReactionSystem, id; name_proc_f= x->x)
+    df = readCSV(data_path)
+    paramNames = name_proc_f(model)
+    paramD = df[id, paramNames]
+    vals = collect(paramD)
+    @show vals
+    pArr = NamedTuple{tuple(paramNames...)}(tuple(vals...))
+    pArr = LVector(pArr)
+    return pArr
+end
