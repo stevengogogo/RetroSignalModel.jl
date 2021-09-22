@@ -122,7 +122,7 @@ There are 20 reactions summarized in the table. Some conditions are yet to be ex
 
 ## Differential Gene Expression 
 
-> Data: [RNAseq_RTG_expression.csv](src/data/RNAseq_RTG_expression.csv)
+> Data: [RNAseq_RTG_expression.csv](src/data/RNAseq_RTG_expression.cs)
 >
 > Raw data and analysis: [RNAseq_RTG_expression](src/data/RNAseq_RTG_expression)
 
