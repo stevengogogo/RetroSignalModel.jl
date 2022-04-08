@@ -22,6 +22,7 @@ SciMLBase = "1"
 SteadyStateDiffEq = "1"
 Tables = "1"
 ModelingToolkit = "8"
+DiffEqBase = "6"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
