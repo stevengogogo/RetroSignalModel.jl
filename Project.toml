@@ -1,7 +1,7 @@
 name    = "RetroSignalModel"
 uuid    = "413adb04-e75d-4cfe-b7ca-413dd9cc07d4"
 authors = ["stevengogogo <stevengogogo4321@gmail.com> and contributors"]
-version = "2.0.1"
+version = "3.0.0"
 
 [deps]
     CSV               = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
@@ -14,7 +14,7 @@ version = "2.0.1"
     Tables            = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
 
 [compat]
-    julia             = "1.6, 1.7"
+    julia             = "1.7"
     DataFrames        = "1.3"
     OrdinaryDiffEq    = "6.8"
     CSV               = "0.10"

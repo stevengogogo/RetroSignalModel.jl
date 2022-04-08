@@ -19,7 +19,7 @@ jobs:
     continue-on-error: ${{ matrix.version == 'nightly' }}
     strategy:
       matrix:
-        version: ["1.6", "1.7"]
+        version: ["1.7"]
         os: ["ubuntu-latest", "windows-latest", "macos-latest"]
       fail-fast: false
     steps:

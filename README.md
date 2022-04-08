@@ -11,56 +11,34 @@
 
 ## Mitochondrial Retrograde Signalling
 
-
 Mitochondrial retrograde signaling reports mitochondrial status to the nucleus. However, there is a lack of understanding of how the nucleus capture mitochondrial status in dynamics and information processing. It is a complicated biochemical reaction that occurs in most eukaryotic organisms. In this repository, we focus on the RTG pathway in yeast. This pathway is the simplest retrograde signaling pathway that has been investigated thoroughly. Data are collected from [1] and [2] (See [src/data/](src/data/)). This repository aims to compose known protein interactions and nucleus relocation that fulfills all known responses of the yeast RTG pathway. Monte-Carlo approach is used to solve this Boolean satisfiability problem, and the parameter searching/ simulation/ threading is facilitated by DifferentialEquations.jl [3]. 
-
 
 ## Installation
 
+This repository is a Julia package. To use this function, one needs to install Julia v1.7+ first (https://julialang.org/).
 
-
-This repository is a Julia package. To use this function, one needs to install Julia first (https://julialang.org/)
-
-Julia 1.6 or above
-Use the following script to install this package in Julia REPL
+Use the following script to install this package in Julia REPL.
 
 ```julia
-Using Pkg
+using Pkg
 Pkg.add(url="https://github.com/stevengogogo/RetroSignalModel.jl#master")
 ```
-
 
 ## Implementation details
 
 https://stevengogogo.github.io/RetroSignalModel.jl/dev/
 
-
 --- 
 
-# Dataset 
+## Dataset 
 
 > See folder [src/data](src/data)
-
 
 ## Solutions of retrograde signaling model 
 
 > Data: [`solution_rtgM4.csv`](src/data/solution_rtgM4.csv)
 
-This file is generated and modified from [`scripts/find_valid_solutions.jl`](scripts/find_valid_solutions.jl). All solutions are corresponding to the knockout experiments of [1] and [2].
-
-### Usage
-
-```julia
-import RetroSignalModels as rs
-m = rs.rtgM4(1)
-rs.isValid(m)
-```
-
-```
-true
-```
-
-This scripts uses the solution in first row of [`solution_rtgM4.csv`](src/data/solution_rtgM4.csv). The validation function (`rs.isValid`) tests the given model with the conditions in [boolean_table_RTG13.csv](src/data/boolean_table_RTG13.csv), and return `true` if all responses are identical to [1] and [2].
+This file is generated and modified from [`scripts/find_valid_solutions.jl`](scripts/find_valid_solutions.jl). All solutions are corresponding to the knockout experiments of [1] and [2] with the conditions in [boolean_table_RTG13.csv](src/data/boolean_table_RTG13.csv). The solutions are stored in [`solution_rtgM4.csv`](src/data/solution_rtgM4.csv).
 
 ## Responses of Yeast RTG proteins to mitochondrial damage
 
