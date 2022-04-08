@@ -4,7 +4,7 @@ CurrentModule = RetroSignalModel
 
 # RetroSignalModel
 
-![rtgM4 model](img/RTG_scheme.png)
+![rtgM4 model](../img/RTG_scheme.png)
 
 ```@index
 ```
