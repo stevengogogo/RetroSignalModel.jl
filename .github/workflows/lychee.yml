@@ -2,14 +2,12 @@ name: Check markdown links
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    branches:
-      - master
+    branches: [master]
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 1"  # Every Monday
+    - cron: "0 0 * * 1" # Every Monday
 
 jobs:
   linkChecker:
@@ -20,7 +18,7 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@master
         with:
-          args: '--accept 200,204,429 --verbose --no-progress **/*.md'
+          args: "--accept 200,204,429 --verbose --no-progress docs"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
