@@ -1,5 +1,5 @@
 using RetroSignalModel
-using RetroSignalModel: rtgM4
+using RetroSignalModel: RtgMTK
 using Documenter
 
 makedocs(;
@@ -10,14 +10,14 @@ makedocs(;
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://stevengogogo.github.io/RetroSignalModel.jl",
-        assets=String[],
+        assets=String[]
     ),
     pages=[
         "Home" => "index.md",
-    ],
+    ]
 )
 
 deploydocs(;
-    branch = "gh-pages",
-    repo="github.com/stevengogogo/RetroSignalModel.jl.git",
+    branch="gh-pages",
+    repo="github.com/stevengogogo/RetroSignalModel.jl.git"
 )
