@@ -1,28 +1,10 @@
-module RetroSignalModel 
+module RetroSignalModel
 
-using Catalyst 
-using Parameters 
-using DataFrames 
-using CSV 
-using DifferentialEquations
-using ModelingToolkit
-using Random 
-using LabelledArrays
-using FindSteadyStates
-using Distributions
-using GLPK
-using ProgressMeter
-using Distributed
-import JuMP as jp
+export RtgMTK, scan_params, load_conditions, load_parameters
 
-
-include("utils.jl")
-include("settings.jl")
-include("models/models.jl")
-include("data.jl")
-include("simulation.jl")
-include("paramSearch.jl")
-
+include("common.jl")
+include("models.jl")
+include("params.jl")
 
 
 end
