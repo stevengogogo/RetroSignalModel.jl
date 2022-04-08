@@ -5,7 +5,7 @@
 [![Coverage](https://codecov.io/gh/stevengogogo/RetroSignalModel.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/stevengogogo/RetroSignalModel.jl)
 
 
-![rtgM4 model](docs/img/RTG_scheme.png)
+![rtgM4 model](docs/src/img/RTG_scheme.png)
 
 
 ## Mitochondrial Retrograde Signalling
@@ -70,12 +70,12 @@ This folder contains summarized responses of mitochondrial retrograde signaling 
 
 ### Components
 
-|Standard Name|Variable Name|Details|
-|---|---|---|
-|RTG1|`rtg1`|https://www.yeastgenome.org/locus/S000005428|
-|RTG2|`rtg2`|https://www.yeastgenome.org/locus/S000005428|
-|RTG3|`rtg3`|https://www.yeastgenome.org/locus/S000000199|
-|Mks1|`mks1`|https://www.yeastgenome.org/locus/S000005020|
+| Standard Name | Variable Name | Details                                      |
+| ------------- | ------------- | -------------------------------------------- |
+| RTG1          | `rtg1`        | https://www.yeastgenome.org/locus/S000005428 |
+| RTG2          | `rtg2`        | https://www.yeastgenome.org/locus/S000005428 |
+| RTG3          | `rtg3`        | https://www.yeastgenome.org/locus/S000000199 |
+| Mks1          | `mks1`        | https://www.yeastgenome.org/locus/S000005020 |
 
 
 ### Definition of Response
@@ -84,9 +84,9 @@ In [1] and [2], RTG response is observed via GFP tags on either RTG1 or RTG3. In
 
 For example, the following is one of the conditions mentioned in [1]:
 
-|Rtg1|Rtg2|Rtg3|s|Mks|gfp|Trans2Nuc|
-|---|---|---|---|---|---|---|
-|0|0|1|1|1|rtg3|1|
+| Rtg1 | Rtg2 | Rtg3 | s   | Mks | gfp  | Trans2Nuc |
+| ---- | ---- | ---- | --- | --- | ---- | --------- |
+| 0    | 0    | 1    | 1   | 1   | rtg3 | 1         |
 
 Under the columns of `Rtg1`, `Rtg2`, `Rtg3` and `Mks`, `0` means that the given protein is suppressed by knockout. On the other hand, `1` represent an expression of wild type. Also, `1` in `s` represent mitochondrial dysfunction, and `0` means the absence of mitochondrial damage. The `gfp` column describes the location of GFP tag. In this example, GFP tag is on `Rtg3`. As known in [1], `Rtg3-GFP` translocates to the nucleus under this condition. Therefore, `Trans2Nuc` is marked as `1`, which means the GFP tags nucleus translocation happens.
 
@@ -94,28 +94,28 @@ Under the columns of `Rtg1`, `Rtg2`, `Rtg3` and `Mks`, `0` means that the given 
 
 There are 20 reactions summarized in the table. Some conditions are yet to be explored; some are from [1] (Sekito et al. 2000) or [2] (Sekito et al. 2002). Missing conditions are labeled with `NA`.
 
-|Line Number|Reference|
-|---|---|
-|2|NA|
-|3|[1]|
-|4|[1]|
-|5|[1]|
-|6|[1]|
-|7|[1]|
-|8|[1]|
-|9|[1]|
-|10|NA|
-|11|NA|
-|12|[1]|
-|13|[1]|
-|14|[1]|
-|15|[1]|
-|16|[1]|
-|17|[1]|
-|18|[2]|
-|19|[2]|
-|20|[2]|
-|21|[2]|
+| Line Number | Reference |
+| ----------- | --------- |
+| 2           | NA        |
+| 3           | [1]       |
+| 4           | [1]       |
+| 5           | [1]       |
+| 6           | [1]       |
+| 7           | [1]       |
+| 8           | [1]       |
+| 9           | [1]       |
+| 10          | NA        |
+| 11          | NA        |
+| 12          | [1]       |
+| 13          | [1]       |
+| 14          | [1]       |
+| 15          | [1]       |
+| 16          | [1]       |
+| 17          | [1]       |
+| 18          | [2]       |
+| 19          | [2]       |
+| 20          | [2]       |
+| 21          | [2]       |
 
 
 ---
@@ -151,13 +151,13 @@ the installation details can be found at https://github.com/hemberg-lab/D3E [5].
 The mean expression values (`mu1` in [analysis_RNA-Seq.ipynb](src/data/RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)) are summarized in [RNAseq_RTG_expression.csv](src/data/RNAseq_RTG_expression.csv) that contains the relative expression levels of RTG components under normal and stressed conditions.
 
 
-|File|Description|
-|---|---|
-|[RNAseq_RTG_expression.csv](src/data/RNAseq_RTG_expression.csv)|Differential gene expression of RTG elements|
-|[analysis_RNA-Seq.ipynb](src/data/RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)|Visualization of D3E processed differential gene expressions|
-|[get_RTG-Expression-Table_zero-removed.ipynb](src/data/RNAseq_RTG_expression/get_RTG-Expression-Table_zero-removed.ipynb)|Remove zeros in RNA-seq data and select genes of interest|
-|[SingleCellRNAseq_yeast_GSE102475_LabelSep.txt](src/data/RNAseq_RTG_expression/data/SingleCellRNAseq_yeast_GSE102475_LabelSep.txt)|RNA seq data of genes of interest (zeros are removed)|
-|[d3e_SC_resp_RtgGenes_GSE102475.csv](src/data/RNAseq_RTG_expression/data/d3e_SC_resp_RtgGenes_GSE102475.csv)|Differential gene expression  (processed by https://www.sanger.ac.uk/sanger/GeneRegulation_D3E/)|
+| File                                                                                                                               | Description                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [RNAseq_RTG_expression.csv](src/data/RNAseq_RTG_expression.csv)                                                                    | Differential gene expression of RTG elements                                                     |
+| [analysis_RNA-Seq.ipynb](src/data/RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)                                                    | Visualization of D3E processed differential gene expressions                                     |
+| [get_RTG-Expression-Table_zero-removed.ipynb](src/data/RNAseq_RTG_expression/get_RTG-Expression-Table_zero-removed.ipynb)          | Remove zeros in RNA-seq data and select genes of interest                                        |
+| [SingleCellRNAseq_yeast_GSE102475_LabelSep.txt](src/data/RNAseq_RTG_expression/data/SingleCellRNAseq_yeast_GSE102475_LabelSep.txt) | RNA seq data of genes of interest (zeros are removed)                                            |
+| [d3e_SC_resp_RtgGenes_GSE102475.csv](src/data/RNAseq_RTG_expression/data/d3e_SC_resp_RtgGenes_GSE102475.csv)                       | Differential gene expression  (processed by https://www.sanger.ac.uk/sanger/GeneRegulation_D3E/) |
 
 
 #### Installation
